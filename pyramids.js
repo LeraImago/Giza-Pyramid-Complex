@@ -1,11 +1,11 @@
-import { Lensflare, LensflareElement } from '/LensFlare.js';
+import { Lensflare, LensflareElement } from '/Lensflare.js';
 
 window.onload = init();
 
 function init() {
 	let scene = new THREE.Scene();
 	let renderer = new THREE.WebGLRenderer( { antialias: true, alpha: true } );
-	
+
 	let camera = new THREE.PerspectiveCamera(
 	45,
 	window.innerWidth / window.innerHeight, 
@@ -17,31 +17,31 @@ function init() {
 	controlsOrbit.minDistance = 100.0;
 	controlsOrbit.maxDistance = 120.0;
 
-    let textureLoader = new THREE.TextureLoader();
+	let textureLoader = new THREE.TextureLoader();
 	let textureFlare0 = textureLoader.load( 'pyramids/lensflare0.png' );
 	let textureFlare3 = textureLoader.load( 'pyramids/lensflare3.png' );
 	addLight( 0.55, 0.9, 0.5, 5000, 0, - 1000 );
 	addLight( 0.08, 0.8, 0.5, 0, 0, - 1000 );
 	addLight( 0.995, 0.5, 0.9, 5000, 5000, - 1000 );
-	
+
 	function addLight( h, s, l, x, y, z ) {
-    	let light = new THREE.PointLight( 0xffffff, 1.5, 6000 );
-    	light.color.setHSL( h, s, l );
-    	light.position.set( x, y, z );
-    	scene.add( light );
-    	let lensflare = new Lensflare();
-    	lensflare.addElement( new LensflareElement( textureFlare0, 700, 0, light.color ) );
-    	lensflare.addElement( new LensflareElement( textureFlare3, 60, 0.6 ) );
-    	lensflare.addElement( new LensflareElement( textureFlare3, 70, 0.7 ) );
-    	lensflare.addElement( new LensflareElement( textureFlare3, 120, 0.9 ) );
-    	lensflare.addElement( new LensflareElement( textureFlare3, 70, 1 ) );
-    	light.add( lensflare );
+		let light = new THREE.PointLight( 0xffffff, 1.5, 6000 );
+		light.color.setHSL( h, s, l );
+		light.position.set( x, y, z );
+		scene.add( light );
+		let lensflare = new Lensflare();
+		lensflare.addElement( new LensflareElement( textureFlare0, 700, 0, light.color ) );
+		lensflare.addElement( new LensflareElement( textureFlare3, 60, 0.6 ) );
+		lensflare.addElement( new LensflareElement( textureFlare3, 70, 0.7 ) );
+		lensflare.addElement( new LensflareElement( textureFlare3, 120, 0.9 ) );
+		lensflare.addElement( new LensflareElement( textureFlare3, 70, 1 ) );
+		light.add( lensflare );
 	}
 
 	let plane = new THREE.PlaneGeometry( 1000, 1000, 1, 1);
 	let planeMaterial = new THREE.MeshStandardMaterial({
 		color: 0x1E1229,
-	side: THREE.DoubleSide});
+		side: THREE.DoubleSide});
 	let ground = new THREE.Mesh(plane, planeMaterial);
 	ground.rotation.x = -0.5 * Math.PI;
 	ground.position.set( 15, 0, 0);
@@ -53,21 +53,23 @@ function init() {
 	grid.rotation.x = Math.PI / 2;
 
 	let ambientLight = new THREE.AmbientLight(0xffffff);
-	scene.add(ambientLight);
-
+	
 	let width = 40;
 	let height = 40;
 	let intensity = 10;
-    var areaLight1 = new THREE.RectAreaLight( 0xFFFF00, intensity,  width, height );
-    areaLight1.position.set(2, 9, -5);
-    areaLight1.rotation.set(-Math.PI / 2, 0, 0);
-    let areaLight2 = new THREE.RectAreaLight( 0xFF4500, intensity,  width, height );
-    areaLight2.position.set(-17, 9, 20);
-    areaLight2.rotation.set(-Math.PI / 2, 0, 0);
-    let areaLight3 = new THREE.RectAreaLight( 0xC71585, intensity,  width, height );
-    areaLight3.position.set(30, 9, -29);
-    areaLight3.rotation.set(-Math.PI / 2, 0, 0);
-
+	
+	let areaLight1 = new THREE.RectAreaLight( 0xFFFF00, intensity,  width, height );
+	areaLight1.position.set(2, 9, -5);
+	areaLight1.rotation.set(-Math.PI / 2, 0, 0);
+	
+	let areaLight2 = new THREE.RectAreaLight( 0xFF4500, intensity,  width, height );
+	areaLight2.position.set(-17, 9, 20);
+	areaLight2.rotation.set(-Math.PI / 2, 0, 0);
+	
+	let areaLight3 = new THREE.RectAreaLight( 0xC71585, intensity,  width, height );
+	areaLight3.position.set(30, 9, -29);
+	areaLight3.rotation.set(-Math.PI / 2, 0, 0);
+	
 	let target = new THREE.Object3D();
 	let pointColor = "#0335b1";
 	let spotLight = new THREE.SpotLight(pointColor);
@@ -82,21 +84,22 @@ function init() {
 
 	let textureMoon = new THREE.TextureLoader().load('pyramids/moon.jpg');
 	textureMoon.wrapS = THREE.RepeatWrapping;
-        textureMoon.wrapT = THREE.RepeatWrapping;
-        textureMoon.repeat.set(1, 1);
+	textureMoon.wrapT = THREE.RepeatWrapping;
+	textureMoon.repeat.set(1, 1);
 
 	let sphereLight = new THREE.SphereGeometry(2, 20, 20);
 	let laghtM = new THREE.MeshLambertMaterial({
 		color: 0xFE083C,
-	 	map: textureMoon});
+		map: textureMoon});
 	let sphereLightMesh = new THREE.Mesh(sphereLight, laghtM);
 	sphereLightMesh.receiveShadow = true;
 
 	scene.add(ground,
 		grid,
-    	areaLight1,
-    	areaLight2,
-    	areaLight3,
+		ambientLight  
+		areaLight1,
+		areaLight2,
+		areaLight3,
 		spotLight,
 		sphereLightMesh);
 
@@ -104,29 +107,19 @@ function init() {
 	let phase = 2;
 	let invert = 1;
 
-	let controls = new function() {
-		this.rotationSpeed = 0.04;
-		this.pointColor = pointColor;
-		this.intensity = 1;
-		this.distance = 0;
-		this.exponent = 30;
-		this.angle = 0.1;
-		this.target = "ground";
-	};
-
 	let texturePyramid = new THREE.TextureLoader().load('pyramids/stone1.png');
 	texturePyramid.wrapS = THREE.RepeatWrapping;
-        texturePyramid.wrapT = THREE.RepeatWrapping;
-        texturePyramid.repeat.set(4, 4);
+	texturePyramid.wrapT = THREE.RepeatWrapping;
+	texturePyramid.repeat.set(4, 4);
 	let material = [
 	new THREE.MeshLambertMaterial({
 		color: 0x5B88C1, 
 		map: texturePyramid, 
 		transparent: true}),
-    new THREE.MeshBasicMaterial({
+	new THREE.MeshBasicMaterial({
 		color: 0x000080,
 		wireframe: true })];
-   
+
 	let geom1 = new THREE.OctahedronGeometry(7);
 	let pyramid1 = new THREE.Mesh(geom1, material);
 	pyramid1.castShadows = true;
@@ -211,8 +204,7 @@ function init() {
 		emissive: 0x50505,
 		roughness: 0.1,
 		metalness: 0.9,
-		reflectivity: 0.43}
-		);
+		reflectivity: 0.43 });
 	let tube = new THREE.Mesh( geometryTube, materialTube );
 	tube.position.set(-330, 30, -150);
 	scene.add(tube);
@@ -221,27 +213,27 @@ function init() {
 	renderer.setSize(window.innerWidth, window.innerHeight);
 	renderer.shadowMap.enabled = true;
 	document.getElementById("threeOutput").appendChild(renderer.domElement);
-	
+
 	function render() {
 		requestAnimationFrame(render);
 		if (phase > 2 * Math.PI) {
-		        invert = invert * -1;
-		        phase -= 2 * Math.PI;
-		    	} else {
-		        phase += controls.rotationSpeed;
-		    	};
-	    sphereLightMesh.position.z = +(14 * (Math.sin(phase)));
-	    sphereLightMesh.position.x = +(14 * (Math.cos(phase)));
-	    sphereLightMesh.position.y = 20;
+			invert = invert * -1;
+			phase -= 2 * Math.PI;
+			} else {
+			phase += 0.05;
+			};
+		sphereLightMesh.position.z = +(14 * (Math.sin(phase)));
+		sphereLightMesh.position.x = +(14 * (Math.cos(phase)));
+		sphereLightMesh.position.y = 20;
 
 		if (invert < 0) {
-		    var pivot = 14;
+		    let pivot = 14;
 		    sphereLightMesh.position.x = (invert * (sphereLightMesh.position.x - pivot)) + pivot;
-        }
-        spotLight.position.copy(sphereLightMesh.position);
-        tube.rotation.x += 0.001;
+		}
+		spotLight.position.copy(sphereLightMesh.position);
+		tube.rotation.x += 0.001;
 		tube.rotation.z += 0.001;
-        controlsOrbit.update();
+		controlsOrbit.update();
 		renderer.render(scene, camera);
 	}
 	function onWindowResize() {

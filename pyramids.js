@@ -122,52 +122,52 @@ function init() {
 
 	let geom1 = new THREE.OctahedronGeometry(7);
 	let pyramid1 = new THREE.Mesh(geom1, material);
-	pyramid1.castShadows = true;
+	pyramid1.castShadow = true;
 	pyramid1.rotation.y = -4;
 	pyramid1.position.set(-17, 0, 20);
 
 	let geom2 = new THREE.OctahedronGeometry(12);
 	let pyramid2 = new THREE.Mesh(geom2, material);
-	pyramid2.castShadows = true;
+	pyramid2.castShadow = true;
 	pyramid2.rotation.y = -4;
 	pyramid2.position.set(2, 0, -5);
 
 	let geom3 = new THREE.OctahedronGeometry(15);
 	let pyramid3 = new THREE.Mesh(geom3, material);
-	pyramid3.castShadows = true;
+	pyramid3.castShadow = true;
 	pyramid3.rotation.y = -4;
 	pyramid3.position.set(32, 0, -29);
 
 	let geom4 = new THREE.OctahedronGeometry(3);
 	let pyramid4 = new THREE.Mesh(geom4, material);
-	pyramid4.castShadows = true;
+	pyramid4.castShadow = true;
 	pyramid4.rotation.y = -4;
 	pyramid4.position.set(-18, 0, 29);
 
 	let geom5 = new THREE.OctahedronGeometry(2);
 	let pyramid5 = new THREE.Mesh(geom5, material);
-	pyramid5.castShadows = true;
+	pyramid5.castShadow = true;
 	pyramid5.rotation.y = -4;
 	pyramid5.position.set(-23, 0, 29);
 
 	let pyramid6 = new THREE.Mesh(geom5, material);
-	pyramid6.castShadows = true;
+	pyramid6.castShadow = true;
 	pyramid6.rotation.y = -4;
 	pyramid6.position.set(-27, 0, 29);
 
 	let geom7 = new THREE.OctahedronGeometry(4);
 	let pyramid7 = new THREE.Mesh(geom7, material);
-	pyramid7.castShadows = true;
+	pyramid7.castShadow = true;
 	pyramid7.rotation.y = -4;
 	pyramid7.position.set(48, 0, -27);
 
 	let pyramid8 = new THREE.Mesh(geom7, material);
-	pyramid8.castShadows = true;
+	pyramid8.castShadow = true;
 	pyramid8.rotation.y = -4;
 	pyramid8.position.set(48, 0, -21);
 
 	let pyramid9 = new THREE.Mesh(geom7, material);
-	pyramid9.castShadows = true;
+	pyramid9.castShadow = true;
 	pyramid9.rotation.y = -4;
 	pyramid9.position.set(48, 0, -15);
 
